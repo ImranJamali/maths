@@ -199,7 +199,7 @@
       <h1>Basic Mathematics Test</h1>
       <p>Topics 1–7 + Averages</p>
     </div>
-    <div class="chip" id="progress">0 / 100 answered</div>
+    <div class="chip" id="progress">0 / 40 answered</div>
     <div class="chip" id="clock">30:00</div>
     <button class="btn" id="submitBtn">Submit test</button>
   </div>
@@ -209,13 +209,13 @@
 
   <section class="cover">
     <p class="eyebrow">Question paper</p>
-    <h2>100 questions · 30 minutes</h2>
-    <p class="lede">Answer every question by selecting one option. The paper submits itself the moment the clock reaches zero, so keep an eye on the timer.</p>
+    <h2>40 questions · 30 minutes</h2>
+    <p class="lede">Answer every question by selecting one option. You have the full 30 minutes for 40 questions, so there is time to work each one out. The paper submits itself the moment the clock reaches zero.</p>
     <dl class="facts">
-      <div class="fact"><dt>Questions</dt><dd>100</dd></div>
+      <div class="fact"><dt>Questions</dt><dd>40</dd></div>
       <div class="fact"><dt>Marks each</dt><dd>1</dd></div>
       <div class="fact"><dt>Time limit</dt><dd>30 min</dd></div>
-      <div class="fact"><dt>Pass mark</dt><dd>40</dd></div>
+      <div class="fact"><dt>Pass mark</dt><dd>16 / 40</dd></div>
     </dl>
     <div class="syllabus">
       <span class="tag">Numbers</span>
@@ -252,7 +252,7 @@
 
   <form id="paper"></form>
 
-  <p class="foot">End of paper — 100 marks total.</p>
+  <p class="foot">End of paper — 40 marks total.</p>
 </main>
 
 <script>
@@ -261,114 +261,54 @@ const QUESTIONS = [
 /* --- EASY --- */
 {t:"Numbers",q:"What is the place value of 7 in 4,732?",o:["7","70","700","7,000"],a:2},
 {t:"Four operations",q:"348 + 256 = ?",o:["594","604","606","614"],a:1},
-{t:"Four operations",q:"900 − 457 = ?",o:["443","447","453","543"],a:0},
 {t:"Four operations",q:"12 × 8 = ?",o:["84","92","96","108"],a:2},
-{t:"Four operations",q:"144 ÷ 12 = ?",o:["10","11","12","14"],a:2},
-{t:"Numbers",q:"Which of these is an even number?",o:["47","63","84","91"],a:2},
-{t:"Numbers",q:"Which symbol makes this true?  3,405 __ 3,450",o:["&gt;","&lt;","=","None of these"],a:1},
+{t:"Factors & powers",q:"Which of these is a prime number?",o:["9","15","17","21"],a:2},
 {t:"Fractions",q:"Which of these is a proper fraction?",o:["5/3","7/7","3/8","9/4"],a:2},
 {t:"Decimals",q:"0.7 written as a fraction is",o:["7/100","7/10","1/7","70/10"],a:1},
 {t:"Percentages",q:"50% of 80 = ?",o:["20","30","40","45"],a:2},
-{t:"Numbers",q:"The Roman numeral for 9 is",o:["VIIII","IX","XI","IV"],a:1},
-{t:"Factors & powers",q:"Which of these is a prime number?",o:["9","15","17","21"],a:2},
-{t:"Averages",q:"The average of 4, 6 and 8 is",o:["5","6","7","9"],a:1},
 {t:"Ratio & proportion",q:"The ratio 4 : 8 in its simplest form is",o:["1 : 2","2 : 1","1 : 4","2 : 4"],a:0},
+{t:"Averages",q:"The average of 4, 6 and 8 is",o:["5","6","7","9"],a:1},
 {t:"Numbers",q:"Round 468 to the nearest ten.",o:["460","465","470","500"],a:2},
-{t:"Four operations",q:"25 × 4 = ?",o:["75","90","100","125"],a:2},
 {t:"Fractions",q:"1/4 + 1/4 = ?",o:["1/8","1/2","2/8","1/16"],a:1},
-{t:"Decimals",q:"2.5 + 1.3 = ?",o:["3.6","3.8","4.8","2.8"],a:1},
-{t:"Numbers",q:"Which of these numbers is the smallest?",o:["−3","0","2","−5"],a:3},
-{t:"Factors & powers",q:"Which number is a multiple of 5?",o:["12","24","35","42"],a:2},
-{t:"Percentages",q:"25% written as a fraction in its lowest terms is",o:["1/2","1/4","2/5","1/5"],a:1},
 {t:"Four operations",q:"Using the correct order of operations, 6 + 3 × 2 = ?",o:["9","12","15","18"],a:1},
-{t:"Numbers",q:"In 58,236 which digit is in the thousands place?",o:["5","8","2","3"],a:1},
-{t:"Fractions",q:"Which fraction is equivalent to 1/2?",o:["2/3","3/6","4/9","5/12"],a:1},
-{t:"Decimals",q:"Which of these decimals is the largest?",o:["0.06","0.6","0.006","0.0006"],a:1},
-{t:"Averages",q:"To find the average (mean) of a set of numbers you",o:["add the values and divide by how many there are","multiply all the values together","subtract the smallest from the largest","pick the value in the middle"],a:0},
-{t:"Factors & powers",q:"How many factors does 6 have?",o:["2","3","4","6"],a:2},
-{t:"Ratio & proportion",q:"If 3 identical apples weigh 600 g, one apple weighs",o:["150 g","180 g","200 g","300 g"],a:2},
-{t:"Four operations",q:"Which property is shown by 4 + 7 = 7 + 4?",o:["Associative","Commutative","Distributive","Identity"],a:1},
-{t:"Numbers",q:"The successor of 999 is",o:["998","1,000","9,910","1,999"],a:1},
 
 /* --- MEDIUM --- */
-{t:"Four operations",q:"7,004 − 2,876 = ?",o:["4,128","4,138","4,228","5,128"],a:0},
-{t:"Four operations",q:"63 × 12 = ?",o:["726","746","756","766"],a:2},
+{t:"Numbers",q:"Which of these numbers is the smallest?",o:["−3","0","2","−5"],a:3},
+{t:"Numbers",q:"The Roman numeral XLIV stands for",o:["46","54","64","44"],a:3},
 {t:"Four operations",q:"1,224 ÷ 18 = ?",o:["58","62","68","72"],a:2},
 {t:"Four operations",q:"48 ÷ 6 + 3 × 2 = ?",o:["10","14","22","28"],a:1},
-{t:"Four operations",q:"(15 − 3) × 2 + 4 = ?",o:["22","26","28","34"],a:2},
-{t:"Numbers",q:"Round 34,682 to the nearest hundred.",o:["34,600","34,680","34,700","35,000"],a:2},
-{t:"Numbers",q:"−7 + 12 = ?",o:["−19","−5","5","19"],a:2},
-{t:"Numbers",q:"5 − (−3) = ?",o:["2","−2","8","−8"],a:2},
-{t:"Numbers",q:"The Roman numeral XLIV stands for",o:["46","54","64","44"],a:3},
 {t:"Factors & powers",q:"The HCF of 12 and 18 is",o:["3","6","9","36"],a:1},
 {t:"Factors & powers",q:"The LCM of 4 and 6 is",o:["2","10","12","24"],a:2},
 {t:"Factors & powers",q:"The prime factorisation of 36 is",o:["2 × 18","2² × 3²","3² × 4","2³ × 3"],a:1},
-{t:"Factors & powers",q:"9² − 4² = ?",o:["25","65","97","13"],a:1},
 {t:"Factors & powers",q:"√81 = ?",o:["8","9","18","40.5"],a:1},
-{t:"Factors & powers",q:"Which of these numbers is divisible by 3?",o:["121","134","246","251"],a:2},
-{t:"Factors & powers",q:"The cube of 4 is",o:["12","16","48","64"],a:3},
 {t:"Fractions",q:"2/3 + 1/6 = ?",o:["3/9","5/6","1/2","3/6"],a:1},
-{t:"Fractions",q:"3/4 − 1/2 = ?",o:["1/4","2/2","1/2","3/8"],a:0},
 {t:"Fractions",q:"2/5 × 3/4 = ?",o:["5/9","6/9","3/10","8/15"],a:2},
-{t:"Fractions",q:"3/4 ÷ 1/2 = ?",o:["3/8","1 1/2","2/3","1/4"],a:1},
-{t:"Fractions",q:"7/2 written as a mixed number is",o:["2 1/3","3 1/2","3 1/3","2 3/4"],a:1},
-{t:"Fractions",q:"Which of these fractions is the largest?",o:["2/3","3/5","5/8","7/12"],a:0},
 {t:"Fractions",q:"18/24 in its lowest terms is",o:["2/3","3/4","6/8","9/12"],a:1},
-{t:"Decimals",q:"4.6 × 3 = ?",o:["12.8","13.8","13.18","14.8"],a:1},
 {t:"Decimals",q:"7.2 ÷ 0.8 = ?",o:["0.9","9","90","5.76"],a:1},
-{t:"Decimals",q:"0.25 as a fraction in its lowest terms is",o:["1/4","2/5","25/10","1/25"],a:0},
 {t:"Decimals",q:"Round 5.678 to two decimal places.",o:["5.67","5.68","5.70","5.60"],a:1},
 {t:"Decimals",q:"3/8 written as a decimal is",o:["0.38","0.375","0.83","0.325"],a:1},
-{t:"Decimals",q:"12.5 − 4.75 = ?",o:["7.25","7.75","8.25","8.75"],a:1},
-{t:"Percentages",q:"15% of 200 = ?",o:["15","25","30","45"],a:2},
 {t:"Percentages",q:"15 out of 60 is what percentage?",o:["15%","20%","25%","40%"],a:2},
-{t:"Percentages",q:"0.35 written as a percentage is",o:["0.35%","3.5%","35%","350%"],a:2},
-{t:"Percentages",q:"A number increases from 40 to 50. The percentage increase is",o:["10%","20%","25%","50%"],a:2},
-{t:"Percentages",q:"120% of 50 = ?",o:["55","60","70","120"],a:1},
 {t:"Ratio & proportion",q:"Divide 60 in the ratio 2 : 3. The two parts are",o:["20 and 40","24 and 36","25 and 35","30 and 30"],a:1},
-{t:"Ratio & proportion",q:"If 4 identical books weigh 2 kg, then 10 such books weigh",o:["4 kg","4.5 kg","5 kg","6 kg"],a:2},
-{t:"Ratio & proportion",q:"A car travels 180 km in 3 hours. Its average speed is",o:["45 km/h","54 km/h","60 km/h","90 km/h"],a:2},
-{t:"Ratio & proportion",q:"The ratio 0.5 : 2 in its simplest form is",o:["1 : 2","1 : 4","5 : 20","2 : 5"],a:1},
-{t:"Averages",q:"The average of 12, 15, 18 and 19 is",o:["15","16","17","18"],a:1},
-{t:"Averages",q:"The average of 5, 10, 15, 20 and 25 is",o:["12","15","17.5","20"],a:1},
 
 /* --- HARDER --- */
-{t:"Four operations",q:"2,304 ÷ 24 = ?",o:["86","92","96","104"],a:2},
-{t:"Four operations",q:"36 ÷ (3 + 6) × 2 = ?",o:["2","8","18","24"],a:1},
 {t:"Four operations",q:"5 + 2 × (8 − 3)² = ?",o:["55","75","175","35"],a:0},
-{t:"Four operations",q:"Which statement shows the distributive property?",o:["3 × (4 + 5) = (3 × 4) + (3 × 5)","3 + (4 + 5) = (3 + 4) + 5","3 × 4 = 4 × 3","3 × 1 = 3"],a:0},
 {t:"Numbers",q:"(−4) × (−6) ÷ 8 = ?",o:["−3","3","−24","24"],a:1},
-{t:"Numbers",q:"Which list is in ascending order?",o:["−2, −1/2, 0.5, 1","−1/2, −2, 0.5, 1","1, 0.5, −1/2, −2","−2, 0.5, −1/2, 1"],a:0},
 {t:"Numbers",q:"The Roman numeral for 1994 is",o:["MDCCCCLXXXXIIII","MCMXCIV","MCMLXXXXIV","MXMIV"],a:1},
-{t:"Factors & powers",q:"The HCF of 24, 36 and 60 is",o:["6","8","12","18"],a:2},
 {t:"Factors & powers",q:"The LCM of 8, 12 and 18 is",o:["36","48","72","144"],a:2},
-{t:"Factors & powers",q:"What is the smallest number that must be added to 500 to make it exactly divisible by 7?",o:["2","3","4","5"],a:2},
-{t:"Factors & powers",q:"√144 + √25 = ?",o:["13","17","19","169"],a:1},
-{t:"Factors & powers",q:"2⁵ ÷ 2² = ?",o:["2","4","8","16"],a:2},
-{t:"Factors & powers",q:"Two bells ring at intervals of 12 minutes and 18 minutes. If they ring together now, after how many minutes will they next ring together?",o:["24","30","36","216"],a:2},
-{t:"Fractions",q:"2 1/2 + 1 3/4 = ?",o:["3 3/4","4 1/4","4 1/2","3 1/4"],a:1},
-{t:"Fractions",q:"What is 3/4 of 2/5 of 100?",o:["15","24","30","40"],a:2},
-{t:"Fractions",q:"5/6 ÷ 2/3 = ?",o:["5/9","10/18","1 1/4","2/5"],a:2},
 {t:"Fractions",q:"If 3/8 of a tank holds 60 litres, the full tank holds",o:["120 litres","140 litres","160 litres","180 litres"],a:2},
-{t:"Decimals",q:"0.04 × 2.5 = ?",o:["0.01","0.1","1.0","10"],a:1},
 {t:"Decimals",q:"6.25 ÷ 0.25 = ?",o:["2.5","25","250","1.5625"],a:1},
-{t:"Decimals",q:"Which fraction is exactly equal to 0.375?",o:["3/8","3/4","5/8","1/3"],a:0},
 {t:"Percentages",q:"30% of a number is 45. The number is",o:["75","135","150","180"],a:2},
-{t:"Percentages",q:"A school has 800 students and 45% of them are girls. How many boys are there?",o:["360","400","440","455"],a:2},
-{t:"Percentages",q:"A quantity decreases from 80 to 60. The percentage decrease is",o:["20%","25%","30%","33 1/3%"],a:1},
 {t:"Percentages",q:"If 20% of x is equal to 15% of 400, then x is",o:["150","240","300","480"],a:2},
 {t:"Ratio & proportion",q:"If a : b = 2 : 3 and b : c = 4 : 5, then a : c is",o:["2 : 5","8 : 15","6 : 20","3 : 4"],a:1},
-{t:"Ratio & proportion",q:"6 taps fill a tank in 8 hours. Working at the same rate, how long would 4 taps take?",o:["5 hours 20 minutes","10 hours","12 hours","16 hours"],a:2},
 {t:"Ratio & proportion",q:"A train covers 240 km in 4 hours. At the same speed, how long will it take to cover 420 km?",o:["6 hours","6 hours 30 minutes","7 hours","7 hours 30 minutes"],a:2},
 {t:"Averages",q:"The average of 5 numbers is 24. If the number 20 is removed, the average of the remaining 4 numbers is",o:["23","25","26","28"],a:1},
-{t:"Averages",q:"The average age of 4 friends is 14 years. A fifth friend aged 19 joins them. The new average age is",o:["14.5 years","15 years","15.5 years","16 years"],a:1},
 {t:"Averages",q:"The mean of 10 numbers is 12. If every number is increased by 3, the new mean is",o:["12","13.5","15","36"],a:2}
 ];
 
 /* ================= State ================= */
 const KEYS = ["A","B","C","D"];
 const TOTAL = QUESTIONS.length;
-const PASS_MARK = 40;
+const PASS_MARK = 16;
 const DURATION = 30 * 60;
 
 let remaining = DURATION;
@@ -495,7 +435,7 @@ function showResult(score, byTopic, auto){
   document.getElementById("scoreBig").innerHTML = `${score}<span>/${TOTAL}</span>`;
   document.getElementById("verdictTitle").textContent = passed ? "Pass" : "Fail";
   document.getElementById("verdictLine").textContent =
-    `${score}% · pass mark is ${PASS_MARK}` + (auto ? " · time ran out, the paper was submitted for you" : "");
+    `${Math.round((score / TOTAL) * 100)}% · pass mark is ${PASS_MARK} out of ${TOTAL}` + (auto ? " · time ran out, the paper was submitted for you" : "");
 
   const notes = passed
     ? (score >= 85 ? "Excellent work!" : score >= 65 ? "Well done — keep it up." : "Passed — a little more practice will lift this.")
