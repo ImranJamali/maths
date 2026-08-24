@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Basic Mathematics Test — Topics 1 to 7 + Averages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=IBM+Plex+Mono:wght@400;600&family=Public+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17222e;
+    --ink-soft:#4a5c6d;
+    --paper:#f3f7f9;
+    --sheet:#ffffff;
+    --grid:#dbe7ee;
+    --margin-rule:#e2a9a2;
+    --blue:#1f5fa8;
+    --blue-wash:#e8f0f9;
+    --pen-red:#cf3b2c;
+    --tick-green:#12795d;
+    --radius:10px;
+  }
+
+  *{box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    font-family:'Public Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    color:var(--ink);
+    background-color:var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:26px 26px;
+    line-height:1.55;
+    -webkit-text-size-adjust:100%;
+  }
+
+  .wrap{max-width:880px;margin:0 auto;padding:0 16px 80px;}
+
+  /* ---------- Header ---------- */
+  .bar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(6px);
+    border-bottom:2px solid var(--ink);
+    margin-bottom:26px;
+  }
+  .bar-inner{
+    max-width:880px;margin:0 auto;padding:10px 16px;
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  }
+  .brand{margin-right:auto;}
+  .brand h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.02rem;font-weight:700;letter-spacing:-.01em;margin:0;
+  }
+  .brand p{margin:0;font-size:.74rem;color:var(--ink-soft);letter-spacing:.06em;text-transform:uppercase;}
+
+  .chip{
+    font-family:'IBM Plex Mono',monospace;font-size:.82rem;font-weight:600;
+    padding:6px 10px;border:1.5px solid var(--ink);border-radius:6px;background:#fff;
+    white-space:nowrap;
+  }
+  #clock.warn{background:#fdecea;border-color:var(--pen-red);color:var(--pen-red);}
+  #clock.over{background:var(--pen-red);border-color:var(--pen-red);color:#fff;}
+
+  button{font:inherit;cursor:pointer;}
+  .btn{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.9rem;
+    background:var(--ink);color:#fff;border:1.5px solid var(--ink);
+    padding:8px 16px;border-radius:6px;
+  }
+  .btn:hover{background:var(--blue);border-color:var(--blue);}
+  .btn.ghost{background:#fff;color:var(--ink);}
+  .btn.ghost:hover{background:var(--blue-wash);color:var(--ink);border-color:var(--blue);}
+  .btn[disabled]{opacity:.4;cursor:not-allowed;}
+  :focus-visible{outline:3px solid var(--blue);outline-offset:2px;}
+
+  /* ---------- Cover ---------- */
+  .cover{
+    background:var(--sheet);border:2px solid var(--ink);border-radius:var(--radius);
+    padding:26px 24px;margin-bottom:26px;
+    box-shadow:5px 5px 0 rgba(23,34,46,.10);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--blue);margin:0 0 8px;
+  }
+  .cover h2{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.9rem;
+    line-height:1.15;letter-spacing:-.02em;margin:0 0 10px;
+  }
+  .cover .lede{margin:0 0 20px;color:var(--ink-soft);max-width:52ch;}
+  .facts{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:1px;background:var(--grid);border:1px solid var(--grid);border-radius:8px;overflow:hidden;
+  }
+  .fact{background:var(--sheet);padding:12px 14px;}
+  .fact dt{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);}
+  .fact dd{margin:2px 0 0;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:1rem;}
+  .syllabus{margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;}
+  .tag{
+    font-size:.74rem;padding:3px 9px;border-radius:20px;
+    background:var(--blue-wash);color:var(--blue);border:1px solid #c8dcf1;
+  }
+
+  /* ---------- Questions ---------- */
+  .q{
+    background:var(--sheet);border:1px solid var(--grid);border-left:3px solid var(--margin-rule);
+    border-radius:var(--radius);padding:16px 18px 14px 52px;margin-bottom:12px;position:relative;
+  }
+  .q-num{
+    position:absolute;left:14px;top:16px;
+    font-family:'IBM Plex Mono',monospace;font-size:.82rem;font-weight:600;color:var(--ink-soft);
+  }
+  .q-topic{
+    font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--blue);display:block;margin-bottom:3px;
+  }
+  .q-text{font-weight:500;margin:0 0 11px;}
+  .opts{display:grid;gap:6px;}
+  .opt{
+    display:flex;align-items:flex-start;gap:9px;padding:7px 11px;
+    border:1px solid var(--grid);border-radius:7px;cursor:pointer;transition:background .12s,border-color .12s;
+  }
+  .opt:hover{background:var(--blue-wash);border-color:#c8dcf1;}
+  .opt input{margin:4px 0 0;accent-color:var(--blue);flex:none;}
+  .opt .key{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--ink-soft);flex:none;}
+  .q.done{border-left-color:var(--blue);}
+
+  /* marked state */
+  .locked .opt{cursor:default;}
+  .locked .opt:hover{background:transparent;border-color:var(--grid);}
+  .opt.correct{background:#e9f6f1;border-color:var(--tick-green);}
+  .opt.chosen-wrong{background:#fdecea;border-color:var(--pen-red);}
+  .mark{
+    margin-left:auto;font-family:'Caveat',cursive;font-size:1.4rem;line-height:1;flex:none;padding-left:8px;
+  }
+  .mark.tick{color:var(--tick-green);}
+  .mark.cross{color:var(--pen-red);}
+  .verdict{
+    margin-top:9px;font-family:'Caveat',cursive;font-size:1.15rem;
+  }
+  .verdict.ok{color:var(--tick-green);}
+  .verdict.no{color:var(--pen-red);}
+
+  /* ---------- Result sheet ---------- */
+  #result{display:none;margin-bottom:26px;}
+  #result.show{display:block;}
+  .sheet{
+    background:var(--sheet);border:2px solid var(--ink);border-radius:var(--radius);
+    padding:24px;box-shadow:5px 5px 0 rgba(23,34,46,.10);
+  }
+  .score-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
+  .score-big{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:3.2rem;line-height:1;
+    color:var(--pen-red);border:3px solid var(--pen-red);border-radius:50%/45%;
+    padding:14px 22px;transform:rotate(-4deg);
+  }
+  .score-big span{font-size:1.5rem;}
+  .score-meta h3{font-family:'Space Grotesk',sans-serif;margin:0 0 4px;font-size:1.35rem;}
+  .score-meta p{margin:0;color:var(--ink-soft);font-size:.9rem;}
+  .note{font-family:'Caveat',cursive;font-size:1.5rem;color:var(--pen-red);margin:14px 0 0;transform:rotate(-1deg);}
+  .breakdown{margin-top:20px;border-top:1px solid var(--grid);padding-top:16px;}
+  .breakdown h4{font-family:'Space Grotesk',sans-serif;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px;}
+  .brow{display:grid;grid-template-columns:1fr 62px 90px;align-items:center;gap:10px;margin-bottom:7px;font-size:.87rem;}
+  .brow .val{font-family:'IBM Plex Mono',monospace;font-weight:600;text-align:right;}
+  .meter{height:8px;background:var(--grid);border-radius:4px;overflow:hidden;}
+  .meter i{display:block;height:100%;background:var(--blue);}
+  .result-actions{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;}
+
+  .foot{
+    margin-top:26px;text-align:center;font-size:.8rem;color:var(--ink-soft);
+    font-family:'IBM Plex Mono',monospace;
+  }
+
+  @media (max-width:560px){
+    .cover h2{font-size:1.5rem;}
+    .q{padding:14px 14px 12px 44px;}
+    .q-num{left:11px;}
+    .score-big{font-size:2.4rem;}
+    .brow{grid-template-columns:1fr 54px 70px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <div class="brand">
+      <h1>Basic Mathematics Test</h1>
+      <p>Topics 1–7 + Averages</p>
+    </div>
+    <div class="chip" id="progress">0 / 100 answered</div>
+    <div class="chip" id="clock">30:00</div>
+    <button class="btn" id="submitBtn">Submit test</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="cover">
+    <p class="eyebrow">Question paper</p>
+    <h2>100 questions · 30 minutes</h2>
+    <p class="lede">Answer every question by selecting one option. The paper submits itself the moment the clock reaches zero, so keep an eye on the timer.</p>
+    <dl class="facts">
+      <div class="fact"><dt>Questions</dt><dd>100</dd></div>
+      <div class="fact"><dt>Marks each</dt><dd>1</dd></div>
+      <div class="fact"><dt>Time limit</dt><dd>30 min</dd></div>
+      <div class="fact"><dt>Pass mark</dt><dd>40</dd></div>
+    </dl>
+    <div class="syllabus">
+      <span class="tag">Numbers</span>
+      <span class="tag">Four operations</span>
+      <span class="tag">Factors &amp; powers</span>
+      <span class="tag">Fractions</span>
+      <span class="tag">Decimals</span>
+      <span class="tag">Percentages</span>
+      <span class="tag">Ratio &amp; proportion</span>
+      <span class="tag">Averages</span>
+    </div>
+  </section>
+
+  <section id="result" aria-live="polite">
+    <div class="sheet">
+      <div class="score-row">
+        <div class="score-big" id="scoreBig">0<span>/100</span></div>
+        <div class="score-meta">
+          <h3 id="verdictTitle">Result</h3>
+          <p id="verdictLine"></p>
+          <p class="note" id="teacherNote"></p>
+        </div>
+      </div>
+      <div class="breakdown">
+        <h4>Marks by topic</h4>
+        <div id="breakdown"></div>
+      </div>
+      <div class="result-actions">
+        <button class="btn ghost" id="reviewBtn">Go to marked paper</button>
+        <button class="btn ghost" id="retakeBtn">Take the test again</button>
+      </div>
+    </div>
+  </section>
+
+  <form id="paper"></form>
+
+  <p class="foot">End of paper — 100 marks total.</p>
+</main>
+
+<script>
+/* ================= QUESTION BANK — ordered easy to hard ================= */
+const QUESTIONS = [
+/* --- EASY --- */
+{t:"Numbers",q:"What is the place value of 7 in 4,732?",o:["7","70","700","7,000"],a:2},
+{t:"Four operations",q:"348 + 256 = ?",o:["594","604","606","614"],a:1},
+{t:"Four operations",q:"900 − 457 = ?",o:["443","447","453","543"],a:0},
+{t:"Four operations",q:"12 × 8 = ?",o:["84","92","96","108"],a:2},
+{t:"Four operations",q:"144 ÷ 12 = ?",o:["10","11","12","14"],a:2},
+{t:"Numbers",q:"Which of these is an even number?",o:["47","63","84","91"],a:2},
+{t:"Numbers",q:"Which symbol makes this true?  3,405 __ 3,450",o:["&gt;","&lt;","=","None of these"],a:1},
+{t:"Fractions",q:"Which of these is a proper fraction?",o:["5/3","7/7","3/8","9/4"],a:2},
+{t:"Decimals",q:"0.7 written as a fraction is",o:["7/100","7/10","1/7","70/10"],a:1},
+{t:"Percentages",q:"50% of 80 = ?",o:["20","30","40","45"],a:2},
+{t:"Numbers",q:"The Roman numeral for 9 is",o:["VIIII","IX","XI","IV"],a:1},
+{t:"Factors & powers",q:"Which of these is a prime number?",o:["9","15","17","21"],a:2},
+{t:"Averages",q:"The average of 4, 6 and 8 is",o:["5","6","7","9"],a:1},
+{t:"Ratio & proportion",q:"The ratio 4 : 8 in its simplest form is",o:["1 : 2","2 : 1","1 : 4","2 : 4"],a:0},
+{t:"Numbers",q:"Round 468 to the nearest ten.",o:["460","465","470","500"],a:2},
+{t:"Four operations",q:"25 × 4 = ?",o:["75","90","100","125"],a:2},
+{t:"Fractions",q:"1/4 + 1/4 = ?",o:["1/8","1/2","2/8","1/16"],a:1},
+{t:"Decimals",q:"2.5 + 1.3 = ?",o:["3.6","3.8","4.8","2.8"],a:1},
+{t:"Numbers",q:"Which of these numbers is the smallest?",o:["−3","0","2","−5"],a:3},
+{t:"Factors & powers",q:"Which number is a multiple of 5?",o:["12","24","35","42"],a:2},
+{t:"Percentages",q:"25% written as a fraction in its lowest terms is",o:["1/2","1/4","2/5","1/5"],a:1},
+{t:"Four operations",q:"Using the correct order of operations, 6 + 3 × 2 = ?",o:["9","12","15","18"],a:1},
+{t:"Numbers",q:"In 58,236 which digit is in the thousands place?",o:["5","8","2","3"],a:1},
+{t:"Fractions",q:"Which fraction is equivalent to 1/2?",o:["2/3","3/6","4/9","5/12"],a:1},
+{t:"Decimals",q:"Which of these decimals is the largest?",o:["0.06","0.6","0.006","0.0006"],a:1},
+{t:"Averages",q:"To find the average (mean) of a set of numbers you",o:["add the values and divide by how many there are","multiply all the values together","subtract the smallest from the largest","pick the value in the middle"],a:0},
+{t:"Factors & powers",q:"How many factors does 6 have?",o:["2","3","4","6"],a:2},
+{t:"Ratio & proportion",q:"If 3 identical apples weigh 600 g, one apple weighs",o:["150 g","180 g","200 g","300 g"],a:2},
+{t:"Four operations",q:"Which property is shown by 4 + 7 = 7 + 4?",o:["Associative","Commutative","Distributive","Identity"],a:1},
+{t:"Numbers",q:"The successor of 999 is",o:["998","1,000","9,910","1,999"],a:1},
+
+/* --- MEDIUM --- */
+{t:"Four operations",q:"7,004 − 2,876 = ?",o:["4,128","4,138","4,228","5,128"],a:0},
+{t:"Four operations",q:"63 × 12 = ?",o:["726","746","756","766"],a:2},
+{t:"Four operations",q:"1,224 ÷ 18 = ?",o:["58","62","68","72"],a:2},
+{t:"Four operations",q:"48 ÷ 6 + 3 × 2 = ?",o:["10","14","22","28"],a:1},
+{t:"Four operations",q:"(15 − 3) × 2 + 4 = ?",o:["22","26","28","34"],a:2},
+{t:"Numbers",q:"Round 34,682 to the nearest hundred.",o:["34,600","34,680","34,700","35,000"],a:2},
+{t:"Numbers",q:"−7 + 12 = ?",o:["−19","−5","5","19"],a:2},
+{t:"Numbers",q:"5 − (−3) = ?",o:["2","−2","8","−8"],a:2},
+{t:"Numbers",q:"The Roman numeral XLIV stands for",o:["46","54","64","44"],a:3},
+{t:"Factors & powers",q:"The HCF of 12 and 18 is",o:["3","6","9","36"],a:1},
+{t:"Factors & powers",q:"The LCM of 4 and 6 is",o:["2","10","12","24"],a:2},
+{t:"Factors & powers",q:"The prime factorisation of 36 is",o:["2 × 18","2² × 3²","3² × 4","2³ × 3"],a:1},
+{t:"Factors & powers",q:"9² − 4² = ?",o:["25","65","97","13"],a:1},
+{t:"Factors & powers",q:"√81 = ?",o:["8","9","18","40.5"],a:1},
+{t:"Factors & powers",q:"Which of these numbers is divisible by 3?",o:["121","134","246","251"],a:2},
+{t:"Factors & powers",q:"The cube of 4 is",o:["12","16","48","64"],a:3},
+{t:"Fractions",q:"2/3 + 1/6 = ?",o:["3/9","5/6","1/2","3/6"],a:1},
+{t:"Fractions",q:"3/4 − 1/2 = ?",o:["1/4","2/2","1/2","3/8"],a:0},
+{t:"Fractions",q:"2/5 × 3/4 = ?",o:["5/9","6/9","3/10","8/15"],a:2},
+{t:"Fractions",q:"3/4 ÷ 1/2 = ?",o:["3/8","1 1/2","2/3","1/4"],a:1},
+{t:"Fractions",q:"7/2 written as a mixed number is",o:["2 1/3","3 1/2","3 1/3","2 3/4"],a:1},
+{t:"Fractions",q:"Which of these fractions is the largest?",o:["2/3","3/5","5/8","7/12"],a:0},
+{t:"Fractions",q:"18/24 in its lowest terms is",o:["2/3","3/4","6/8","9/12"],a:1},
+{t:"Decimals",q:"4.6 × 3 = ?",o:["12.8","13.8","13.18","14.8"],a:1},
+{t:"Decimals",q:"7.2 ÷ 0.8 = ?",o:["0.9","9","90","5.76"],a:1},
+{t:"Decimals",q:"0.25 as a fraction in its lowest terms is",o:["1/4","2/5","25/10","1/25"],a:0},
+{t:"Decimals",q:"Round 5.678 to two decimal places.",o:["5.67","5.68","5.70","5.60"],a:1},
+{t:"Decimals",q:"3/8 written as a decimal is",o:["0.38","0.375","0.83","0.325"],a:1},
+{t:"Decimals",q:"12.5 − 4.75 = ?",o:["7.25","7.75","8.25","8.75"],a:1},
+{t:"Percentages",q:"15% of 200 = ?",o:["15","25","30","45"],a:2},
+{t:"Percentages",q:"15 out of 60 is what percentage?",o:["15%","20%","25%","40%"],a:2},
+{t:"Percentages",q:"0.35 written as a percentage is",o:["0.35%","3.5%","35%","350%"],a:2},
+{t:"Percentages",q:"A number increases from 40 to 50. The percentage increase is",o:["10%","20%","25%","50%"],a:2},
+{t:"Percentages",q:"120% of 50 = ?",o:["55","60","70","120"],a:1},
+{t:"Ratio & proportion",q:"Divide 60 in the ratio 2 : 3. The two parts are",o:["20 and 40","24 and 36","25 and 35","30 and 30"],a:1},
+{t:"Ratio & proportion",q:"If 4 identical books weigh 2 kg, then 10 such books weigh",o:["4 kg","4.5 kg","5 kg","6 kg"],a:2},
+{t:"Ratio & proportion",q:"A car travels 180 km in 3 hours. Its average speed is",o:["45 km/h","54 km/h","60 km/h","90 km/h"],a:2},
+{t:"Ratio & proportion",q:"The ratio 0.5 : 2 in its simplest form is",o:["1 : 2","1 : 4","5 : 20","2 : 5"],a:1},
+{t:"Averages",q:"The average of 12, 15, 18 and 19 is",o:["15","16","17","18"],a:1},
+{t:"Averages",q:"The average of 5, 10, 15, 20 and 25 is",o:["12","15","17.5","20"],a:1},
+
+/* --- HARDER --- */
+{t:"Four operations",q:"2,304 ÷ 24 = ?",o:["86","92","96","104"],a:2},
+{t:"Four operations",q:"36 ÷ (3 + 6) × 2 = ?",o:["2","8","18","24"],a:1},
+{t:"Four operations",q:"5 + 2 × (8 − 3)² = ?",o:["55","75","175","35"],a:0},
+{t:"Four operations",q:"Which statement shows the distributive property?",o:["3 × (4 + 5) = (3 × 4) + (3 × 5)","3 + (4 + 5) = (3 + 4) + 5","3 × 4 = 4 × 3","3 × 1 = 3"],a:0},
+{t:"Numbers",q:"(−4) × (−6) ÷ 8 = ?",o:["−3","3","−24","24"],a:1},
+{t:"Numbers",q:"Which list is in ascending order?",o:["−2, −1/2, 0.5, 1","−1/2, −2, 0.5, 1","1, 0.5, −1/2, −2","−2, 0.5, −1/2, 1"],a:0},
+{t:"Numbers",q:"The Roman numeral for 1994 is",o:["MDCCCCLXXXXIIII","MCMXCIV","MCMLXXXXIV","MXMIV"],a:1},
+{t:"Factors & powers",q:"The HCF of 24, 36 and 60 is",o:["6","8","12","18"],a:2},
+{t:"Factors & powers",q:"The LCM of 8, 12 and 18 is",o:["36","48","72","144"],a:2},
+{t:"Factors & powers",q:"What is the smallest number that must be added to 500 to make it exactly divisible by 7?",o:["2","3","4","5"],a:2},
+{t:"Factors & powers",q:"√144 + √25 = ?",o:["13","17","19","169"],a:1},
+{t:"Factors & powers",q:"2⁵ ÷ 2² = ?",o:["2","4","8","16"],a:2},
+{t:"Factors & powers",q:"Two bells ring at intervals of 12 minutes and 18 minutes. If they ring together now, after how many minutes will they next ring together?",o:["24","30","36","216"],a:2},
+{t:"Fractions",q:"2 1/2 + 1 3/4 = ?",o:["3 3/4","4 1/4","4 1/2","3 1/4"],a:1},
+{t:"Fractions",q:"What is 3/4 of 2/5 of 100?",o:["15","24","30","40"],a:2},
+{t:"Fractions",q:"5/6 ÷ 2/3 = ?",o:["5/9","10/18","1 1/4","2/5"],a:2},
+{t:"Fractions",q:"If 3/8 of a tank holds 60 litres, the full tank holds",o:["120 litres","140 litres","160 litres","180 litres"],a:2},
+{t:"Decimals",q:"0.04 × 2.5 = ?",o:["0.01","0.1","1.0","10"],a:1},
+{t:"Decimals",q:"6.25 ÷ 0.25 = ?",o:["2.5","25","250","1.5625"],a:1},
+{t:"Decimals",q:"Which fraction is exactly equal to 0.375?",o:["3/8","3/4","5/8","1/3"],a:0},
+{t:"Percentages",q:"30% of a number is 45. The number is",o:["75","135","150","180"],a:2},
+{t:"Percentages",q:"A school has 800 students and 45% of them are girls. How many boys are there?",o:["360","400","440","455"],a:2},
+{t:"Percentages",q:"A quantity decreases from 80 to 60. The percentage decrease is",o:["20%","25%","30%","33 1/3%"],a:1},
+{t:"Percentages",q:"If 20% of x is equal to 15% of 400, then x is",o:["150","240","300","480"],a:2},
+{t:"Ratio & proportion",q:"If a : b = 2 : 3 and b : c = 4 : 5, then a : c is",o:["2 : 5","8 : 15","6 : 20","3 : 4"],a:1},
+{t:"Ratio & proportion",q:"6 taps fill a tank in 8 hours. Working at the same rate, how long would 4 taps take?",o:["5 hours 20 minutes","10 hours","12 hours","16 hours"],a:2},
+{t:"Ratio & proportion",q:"A train covers 240 km in 4 hours. At the same speed, how long will it take to cover 420 km?",o:["6 hours","6 hours 30 minutes","7 hours","7 hours 30 minutes"],a:2},
+{t:"Averages",q:"The average of 5 numbers is 24. If the number 20 is removed, the average of the remaining 4 numbers is",o:["23","25","26","28"],a:1},
+{t:"Averages",q:"The average age of 4 friends is 14 years. A fifth friend aged 19 joins them. The new average age is",o:["14.5 years","15 years","15.5 years","16 years"],a:1},
+{t:"Averages",q:"The mean of 10 numbers is 12. If every number is increased by 3, the new mean is",o:["12","13.5","15","36"],a:2}
+];
+
+/* ================= State ================= */
+const KEYS = ["A","B","C","D"];
+const TOTAL = QUESTIONS.length;
+const PASS_MARK = 40;
+const DURATION = 30 * 60;
+
+let remaining = DURATION;
+let timerId = null;
+let submitted = false;
+
+const paper = document.getElementById("paper");
+const clockEl = document.getElementById("clock");
+const progressEl = document.getElementById("progress");
+const submitBtn = document.getElementById("submitBtn");
+const resultEl = document.getElementById("result");
+
+/* ================= Build the paper ================= */
+function buildPaper(){
+  paper.innerHTML = QUESTIONS.map((item, i) => {
+    const opts = item.o.map((text, j) => `
+      <label class="opt" for="q${i}o${j}">
+        <input type="radio" id="q${i}o${j}" name="q${i}" value="${j}">
+        <span class="key">${KEYS[j]}.</span>
+        <span class="txt">${text}</span>
+      </label>`).join("");
+    return `
+      <section class="q" id="qcard${i}" data-index="${i}" role="group" aria-labelledby="qlab${i}">
+        <span class="q-num">${String(i + 1).padStart(3, "0")}</span>
+        <span class="q-topic">${item.t}</span>
+        <p class="q-text" id="qlab${i}">${item.q}</p>
+        <div class="opts">${opts}</div>
+      </section>`;
+  }).join("");
+}
+
+/* ================= Timer ================= */
+function paintClock(){
+  const m = Math.floor(remaining / 60);
+  const s = remaining % 60;
+  clockEl.textContent = `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+  clockEl.classList.toggle("warn", remaining <= 300 && remaining > 60);
+  clockEl.classList.toggle("over", remaining <= 60);
+}
+
+function startTimer(){
+  paintClock();
+  timerId = setInterval(() => {
+    remaining--;
+    paintClock();
+    if (remaining <= 0){
+      clearInterval(timerId);
+      grade(true);
+    }
+  }, 1000);
+}
+
+/* ================= Progress ================= */
+function updateProgress(){
+  let answered = 0;
+  QUESTIONS.forEach((_, i) => {
+    const picked = paper.querySelector(`input[name="q${i}"]:checked`);
+    if (picked){
+      answered++;
+      document.getElementById("qcard" + i).classList.add("done");
+    }
+  });
+  progressEl.textContent = `${answered} / ${TOTAL} answered`;
+  return answered;
+}
+
+/* ================= Marking ================= */
+function grade(auto){
+  if (submitted) return;
+  const answered = updateProgress();
+
+  if (!auto){
+    const left = TOTAL - answered;
+    const msg = left > 0
+      ? `You still have ${left} unanswered question${left === 1 ? "" : "s"}. Submit anyway?`
+      : "Submit the test and reveal the answers?";
+    if (!confirm(msg)) return;
+  }
+
+  submitted = true;
+  clearInterval(timerId);
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Submitted";
+
+  let score = 0;
+  const byTopic = {};
+
+  QUESTIONS.forEach((item, i) => {
+    const card = document.getElementById("qcard" + i);
+    const picked = paper.querySelector(`input[name="q${i}"]:checked`);
+    const chosen = picked ? Number(picked.value) : null;
+    const right = chosen === item.a;
+    if (right) score++;
+
+    byTopic[item.t] = byTopic[item.t] || {got:0, out:0};
+    byTopic[item.t].out++;
+    if (right) byTopic[item.t].got++;
+
+    card.classList.add("locked");
+    card.querySelectorAll("input").forEach(inp => inp.disabled = true);
+    const labels = card.querySelectorAll(".opt");
+
+    labels[item.a].classList.add("correct");
+    labels[item.a].insertAdjacentHTML("beforeend", '<span class="mark tick">✓</span>');
+    if (chosen !== null && !right){
+      labels[chosen].classList.add("chosen-wrong");
+      labels[chosen].insertAdjacentHTML("beforeend", '<span class="mark cross">✗</span>');
+    }
+
+    const line = right
+      ? '<p class="verdict ok">Correct — 1 mark</p>'
+      : (chosen === null
+          ? `<p class="verdict no">Not attempted — correct answer: ${KEYS[item.a]}</p>`
+          : `<p class="verdict no">Incorrect — correct answer: ${KEYS[item.a]}</p>`);
+    card.insertAdjacentHTML("beforeend", line);
+    card.style.borderLeftColor = right ? "var(--tick-green)" : "var(--pen-red)";
+  });
+
+  showResult(score, byTopic, auto);
+}
+
+function showResult(score, byTopic, auto){
+  const passed = score >= PASS_MARK;
+  document.getElementById("scoreBig").innerHTML = `${score}<span>/${TOTAL}</span>`;
+  document.getElementById("verdictTitle").textContent = passed ? "Pass" : "Fail";
+  document.getElementById("verdictLine").textContent =
+    `${score}% · pass mark is ${PASS_MARK}` + (auto ? " · time ran out, the paper was submitted for you" : "");
+
+  const notes = passed
+    ? (score >= 85 ? "Excellent work!" : score >= 65 ? "Well done — keep it up." : "Passed — a little more practice will lift this.")
+    : "Below the pass mark — review the topics marked in red.";
+  document.getElementById("teacherNote").textContent = notes;
+
+  document.getElementById("breakdown").innerHTML = Object.keys(byTopic).map(topic => {
+    const d = byTopic[topic];
+    const pct = Math.round((d.got / d.out) * 100);
+    return `
+      <div class="brow">
+        <span>${topic}</span>
+        <span class="val">${d.got}/${d.out}</span>
+        <span class="meter"><i style="width:${pct}%"></i></span>
+      </div>`;
+  }).join("");
+
+  resultEl.classList.add("show");
+  resultEl.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+/* ================= Wiring ================= */
+buildPaper();
+paper.addEventListener("change", updateProgress);
+submitBtn.addEventListener("click", () => grade(false));
+document.getElementById("reviewBtn").addEventListener("click", () => {
+  document.getElementById("qcard0").scrollIntoView({behavior:"smooth", block:"start"});
+});
+document.getElementById("retakeBtn").addEventListener("click", () => location.reload());
+window.addEventListener("beforeunload", e => {
+  if (!submitted && remaining < DURATION){ e.preventDefault(); e.returnValue = ""; }
+});
+startTimer();
+</script>
+</body>
+</html>
